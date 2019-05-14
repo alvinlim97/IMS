@@ -1,0 +1,61 @@
+﻿@model IEnumerable<IMS.Models.IncidentTask>
+
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h2>7day Reports Overview</h2>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <h4 class="mb-3">Bar chart </h4>
+            <canvas id="barChart" width="1442" height="720" class="chartjs-render-monitor" style="display: block; width: 721px; height: 360px;"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="~/vendors/chart.js/dist/Chart.bundle.min.js"></script>
+<script>
+    ( function ( $ ) {
+    "use strict";
+    //bar chart
+    var ctx = document.getElementById( "barChart" );
+    //    ctx.height = 200;
+    var myChart = new Chart( ctx, {
+        type: 'bar',
+        data: {
+            labels: [ "@ViewBag.Day7 @ViewBag.Date7", "@ViewBag.Day6 @ViewBag.Date6", "@ViewBag.Day5 @ViewBag.Date5", "@ViewBag.Day4 @ViewBag.Date4", "@ViewBag.Day3 @ViewBag.Date3", "@ViewBag.Day2 @ViewBag.Date2", "@ViewBag.Day1 @ViewBag.Date1" ],
+            datasets: [
+                {
+                    label: "Escalated Incident",
+                    data: [13, 5, 8, 13,  @ViewBag.Task3, @ViewBag.Task2, @ViewBag.Task1 ],
+                    borderColor: "black",
+                    borderWidth: "0",
+                    backgroundColor: "#272c33"
+                            },
+                {
+                    label: "Solved Incident",
+                    data: [13, 3, 8, 13, @ViewBag.TaskD3, @ViewBag.TaskD2, @ViewBag.TaskD1 ],
+                    borderColor: "rgba(0,0,0,0.09)",
+                    borderWidth: "0",
+                    backgroundColor: "cadetblue"
+                            }
+                        ]
+        },
+        options: {
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                                } ]
+            }
+        }
+    } );
+
+
+
+
+} )( jQuery );
+</script>

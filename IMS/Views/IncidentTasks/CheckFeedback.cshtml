@@ -1,0 +1,67 @@
+﻿@model IEnumerable<IMS.Models.IncidentTask>
+
+@{
+    ViewData["Title"] = "Feedback";
+    int x = 0;
+}
+
+<h2>Feedback</h2>
+
+
+<div class="col-md-12 animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <table id="bootstrap-data-table-export" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            No.
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Satisfication)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FeedBack)
+                        </th>
+                        <th>
+                            Escalated Date
+                        </th>
+                        <th>
+                            Solved Date
+                        </th>
+                        <th>
+                            Handled By
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        x++;
+                    <tr>
+                        <td>
+                            @x.ToString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Satisfication)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FeedBack)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ename)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

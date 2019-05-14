@@ -1,0 +1,184 @@
+﻿@model IMS.Models.IncidentTask
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Satisfy" id="edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group  col-md-12">
+                <label class="control-label">ID</label>
+                <input asp-for="ID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group  col-md-4">
+                <label class="control-label"> Escalated Staff ID</label>
+                <input asp-for="SID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="SID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Escalated By </label>
+                <input asp-for="ESname" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ESname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Escalated Date Time</label>
+                <input asp-for="EDate" class="form-control" readonly="readonly" />
+                <span asp-validation-for="EDate" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Floor" class="control-label"></label>
+                <input asp-for="Floor" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="TableNo" class="control-label"></label>
+                <input asp-for="TableNo" class="form-control" readonly="readonly" />
+                <span asp-validation-for="TableNo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Eway" class="control-label"></label>
+                <input asp-for="Eway" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Eway" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            @if (@ViewBag.Solved == "Solved")
+            {
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        Solved Date
+                    </label>
+                    <input asp-for="SDate" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="SDate" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group col-md-4" hidden>
+                <label class="control-label">Expertise ID</label>
+
+                <input asp-for="EID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="EID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Technician Name</label>
+
+                <input asp-for="Ename" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Ename" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Incident ID</label>
+
+                <input asp-for="IID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="IID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Incident Name</label>
+                <input asp-for="Iname" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Iname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control comment_box" readonly="readonly"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label class="control-label">Solution</label>
+
+                <textarea placeholder="@ViewBag.Solution" class="form-control comment_box" readonly="readonly"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label">Images</label>
+
+                <img src="data:image/png;base64,@ViewData["image"]" class="form-control display_box" />﻿
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label">Videos</label>
+
+                <video class="form-control display_box" controls>
+                    <source src="data:video/mp4;base64,@ViewData["video"]" />
+                </video>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label asp-for="Satisfication" class="control-label"></label>
+                <input asp-for="Satisfication" class="form-control status" readonly="readonly" />
+                <span asp-validation-for="Satisfication" class="text-danger"></span>
+            </div>
+            @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Staff")
+            {
+                <div class="form-group col-md-12">
+                    <label asp-for="FeedBack" class="control-label"></label>
+                    <input asp-for="FeedBack" class="form-control status" />
+                    <span asp-validation-for="FeedBack" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group col-md-12">
+                <div class="" style="float:right">
+                    @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Staff")
+                    {
+                        <input type="submit" class="btn btn-active activation btn_margin_left" style="float:right" />
+                        <input type="submit" value="Save" class="btn btn-success btn_margin_left" style="float:right" />
+                    }
+                    @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Lead")
+                    {
+                        if (@ViewBag.AddEway == "Manual")
+                        {
+                            <a class="btn btn-warning" asp-controller="Incidents" asp-action="AddIncidentManual" style="color:white">Add Into Incident Database</a>
+                        }
+                    }
+                    @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Expert" || @ViewBag.StaffRole == "Lead")
+                    {
+                        <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+                    }
+                    else
+                    {
+                        <a class="btn Back_Button btn_margin_left" asp-controller="IncidentTasks" asp-action="Escalation">Back</a>
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+        $(document).ready(function () {
+            if ($("#edit").find('.status').val() == '' || $("#edit").find('.status').val() == "Unsatisfied") {
+                $("#edit").find('.activation').val('Satisfied')
+            }
+            else {
+                $("#edit").find('.activation').val('Unsatisfied')
+                $("#edit").find('.activation').removeClass("btn-active").addClass("btn-danger");
+            }
+
+
+            $(".activation").click(function () {
+
+                if ($("#edit").find('.status').val() == '' || $("#edit").find('.status').val() ==  "Unsatisfied") {
+
+                    $("#edit").find('.status').val("Satisfied")
+                }
+                else {
+                    $("#edit").find('.status').val("Unsatisfied")
+                }
+            });
+        });
+</script>

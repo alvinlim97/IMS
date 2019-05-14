@@ -1,0 +1,202 @@
+﻿@model IMS.Models.Staff
+@{
+    ViewData["Title"] = "Create";
+    Layout = null;
+}
+@*<html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/Login.css" />
+    </head>
+
+    <body onload="startTime()">
+
+        <div class="Login_Module">
+            <div class="Login_Block">
+                <div class="col-md-12">
+                    <div class="col-md-12 Login_Title">I M S</div>
+                    <form asp-action="Login" class="Login_Form" id="loginForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Username" class="Login_Credential">Username:</label>
+                            <input asp-for="Username" type="text" class="form-control Login_Box" id="usr" required>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Pass" class="Login_Credential">Password:</label>
+                            <input asp-for="Pass" type="password" class="form-control Login_Box" id="pwd" required>
+                            <span asp-validation-for="Pass" class="text-danger"></span>
+                            <span style="color:red">@Html.ValidationMessage("Error")</span>
+                            <div class="btn Login_Visibility">
+                                <i id="visibility" class="fas fa-eye-slash"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center G_no_padding">
+                            <button type="submit" class="btn Login_Btn" value="Login">Login</button>
+                            <div onclick="clearForm()" value="Reset form" class="btn Login_Btn">Clear</div>
+                        </div>
+                    </form>
+                    <div id="currentTime" class="Login_Time"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+    </html>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IMS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/login/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form asp-action="Login" class="login100-form validate-form" id="loginForm">
+                    <span class="login100-form-title p-b-34">
+                        IMS Login
+                    </span>
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        <input asp-for="Username" type="text" class="input100" placeholder="Username" id="usr">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+                        <input input asp-for="Pass" class="input100" type="password" placeholder="Password" id="pwd">
+                        <span class="focus-input100"></span>
+                        <div class="btn Login_Visibility">
+                            <i id="visibility" class="fas fa-eye-slash"></i>
+                        </div>
+                    </div>
+
+                    <span style="color:red">@Html.ValidationMessage("Error")</span>
+
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn" value="Login">
+                            Sign in
+                        </button>
+                    </div>
+
+                    <div class="w-full text-center p-t-27 p-b-239">
+                        <span class="txt1">
+                            
+                        </span>
+
+                        <a href="#" class="txt2">
+                           
+                        </a>
+                    </div>
+
+                    <div class="w-full text-center">
+                        <a href="#" class="txt3">
+                           
+                        </a>
+                    </div>
+                </form>
+
+                <div class="login100-more" style="background-image: url('../login/images/Login.jpg');"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect1')
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/js/main.js"></script>
+
+</body>
+</html>
+<script>
+    function clearForm() {
+        document.getElementById("loginForm").reset();
+    }
+
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('currentTime').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+        return i;
+    }
+
+
+    $(".Login_Visibility").click(function passwordVisibility() {
+        var x = document.getElementById("pwd");
+        if ($("#visibility").hasClass("fa-eye-slash")) {
+            x.type = "text";
+            $(this).find('.fa-eye-slash').removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).find('.fa-eye').css('color', 'black');
+        } else {
+            x.type = "password";
+            $(this).find('.fa-eye').removeClass('fa-eye').addClass('fa-eye-slash');
+            $(this).find('.fa-eye-slash').css('color', 'gray');
+        }
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

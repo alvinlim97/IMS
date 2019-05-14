@@ -1,0 +1,168 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.comment_box {
+    min-height: 200px;
+    padding: 10px;
+}
+.display_box {
+    min-height: 320px;
+    padding: 10px;
+}
+.Back_Button {
+    background-color: gray;
+    border-color: transparent;
+    color: white;
+}
+
+    .Back_Button:hover {
+        background-color: dimgray;
+        border-color: transparent;
+        color: white;
+    }
+
+.IMS_Main {
+    margin-top: 70px;
+}
+
+.IMS_Block {
+    width: 30%;
+    margin-right: 55px;
+    border: solid 2px black;
+    height: 150px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 20px;
+    background-color: azure;
+}
+
+.IMS_Header {
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    clear: both;
+    display: inline-block;
+    padding: 15px 20px 13px;
+    width: 100%;
+}
+
+
+.IMS_Block_text {
+    font-size: 20px;
+}
+
+.IMS_Block_Update {
+    width: 30%;
+    margin-right: 55px;
+    min-height: 150px;
+    text-align: center;
+    padding: 20px;
+    border: solid 2px black;
+}
+
+
+    .IMS_Block_Update:last-child {
+        margin-right: 0px;
+    }
+
+.IMS_Staff_Bar {
+    margin-bottom: 10px;
+}
+
+.fa-id-card {
+    font-size: 30px;
+    float: left;
+    color:black;
+}
+.fa-exclamation-circle {
+    font-size:30px;
+    float: left;
+    color: black;
+}
+.fa-user {
+    font-size: 30px;
+    float: left;
+    color: black;
+}
+.fa-user-plus {
+    font-size: 70px;
+    color: slategrey;
+}
+
+.btn_margin_left {
+    margin-left: 5px;
+}
+
+.btn-active{
+    background-color:cornflowerblue;
+    color:white;
+}
+
+.IMS_searchBar {
+    background-color: #222;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.IMS_searchBar:focus {
+    background-color: darkgrey;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    outline: none;
+}
+
+.IMS_DropDown select {
+    border-radius: 20px;
+    text-align: center;
+}
+    .IMS_DropDown select:focus {
+        border-radius: 20px;
+        text-align: center;
+        outline: none;
+    }
+.IMS_Footer {
+    background-color: black;
+    opacity: 0.9;
+    height: 40px;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

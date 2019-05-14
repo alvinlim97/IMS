@@ -1,0 +1,62 @@
+﻿
+@model IMS.Models.Staff
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Staff</h2>
+
+    <div class="containerx">
+        <div class="cardx col-md-4">
+            <div class="cardx__image-container">
+                <img class="cardx_image" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
+            </div>
+
+            <svg class="cardx_svg" viewBox="0 0 800 500">
+
+                <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333" />
+                <path class="cardx_line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="cadetblue" stroke-width="3" fill="transparent" />
+            </svg>
+
+            <div class="cardx_content">
+                <h1 class="cardx_title">@Html.DisplayFor(model => model.Designation)&nbsp;@Html.DisplayFor(model => model.Sname)</h1>
+                <p>
+                    @Html.DisplayFor(model => model.Role)&nbsp;@if (Model.Status == "Active")
+                    {
+                        <span style="color:greenyellow">@Html.DisplayFor(model => model.Status)</span>
+                        <span style="color:cadetblue">@Html.DisplayFor(model => model.Spoint)</span>
+                    }
+                    else
+                    {
+                        <span style="color:red">@Html.DisplayFor(model => model.Status)</span>
+                        <span style="color:cadetblue">@Html.DisplayFor(model => model.Spoint)</span>
+                    }
+
+                </p>
+                <p>
+                    <i class="fa fa-map-marker"></i> @Html.DisplayFor(model => model.Address)&nbsp;@Html.DisplayFor(model => model.Postcode)&nbsp;
+                    @Html.DisplayFor(model => model.City)&nbsp;@Html.DisplayFor(model => model.State)&nbsp;@Html.DisplayFor(model => model.Country).
+                </p>
+                <p>
+                    <a href="#"><i class="fa fa-envelope pr-1"> @Html.DisplayFor(model => model.Email)</i></a>
+                    <a href="#"><i class="fa fa-phone pr-1">  @Html.DisplayFor(model => model.MobileNo)</i></a>
+                </p>
+                <p>
+                    <span><i class="fa fa-location-arrow"> @Html.DisplayFor(model => model.Floor) Floor&nbsp;@Html.DisplayFor(model => model.Department)&nbsp;@Html.DisplayFor(model => model.TableNo)</i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div style="float:right">
+        <a style="color:white" class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+        @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Expert")
+        {
+            <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+        }
+        else
+        {
+            <a class="btn Back_Button btn_margin_left" asp-controller="Home" asp-action="Index">Back</a>
+        }
+    </div>

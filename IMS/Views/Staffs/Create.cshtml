@@ -1,0 +1,201 @@
+﻿@model IMS.Models.Staff
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Staff</h2>
+<hr />
+@if (@ViewBag.StaffRole == "Admin")
+{
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <h4>Personal Details</h4>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-md-4">
+                    <label>Name</label>
+                    <input asp-for="Sname" class="form-control" />
+                    <span asp-validation-for="Sname" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="IC" class="control-label"></label>
+                    <input type="text" asp-for="IC" class="form-control" />
+                    <span asp-validation-for="IC" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Designation" class="control-label"></label>
+                    <select asp-for="Designation" class="form-control">
+                        <option disabled selected value=""> -- select an option -- </option>
+                        <option value="Mr.">Mr.</option>
+                        <option value="Ms.">Ms.</option>
+                    </select>
+                    <span asp-validation-for="Designation" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <select asp-for="Gender" class="form-control">
+                        <option disabled selected value=""> -- select an option -- </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="DOB" class="control-label"></label>
+                    <input type="date" asp-for="DOB" class="form-control" />
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Postcode" class="control-label"></label>
+                    <input asp-for="Postcode" class="form-control" />
+                    <span asp-validation-for="Postcode" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="State" class="control-label"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="MobileNo" class="control-label"></label>
+                    <input type="text" asp-for="MobileNo" class="form-control" />
+                    <span asp-validation-for="MobileNo" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Role" class="control-label"></label>
+                    <select asp-for="Role" class="form-control">
+                        <option disabled selected value=""> -- select an option -- </option>
+                        <option value="Admin">Admin</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Expert">Technician</option>
+                        <option value="Lead">Tech Lead</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Status" class="control-label"></label>
+                    <input value="Active" asp-for="Status" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Spoint" class="control-label"></label>
+                    <input value="100" asp-for="Spoint" class="form-control " readonly="readonly" />
+                    <span asp-validation-for="Spoint" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Floor" class="control-label"></label>
+                    <select asp-for="Floor" class="form-control">
+                        <option disabled selected value=""> -- select an option -- </option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                    </select>
+                    <span asp-validation-for="Floor" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Department" class="control-label"></label>
+                    <select asp-for="Department" class="form-control">
+                        <option disabled selected value=""> -- select an option -- </option>
+                        <option value="R & D">R & D</option>
+                        <option value="HR">HR</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="TableNo" class="control-label"></label>
+                    <input asp-for="TableNo" class="form-control" />
+                    <span asp-validation-for="TableNo" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" id="IMSuser" value="" class="form-control " readonly="readonly" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                    <span style="color:red">@Html.ValidationMessage("Error")</span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Password</label>
+                    <input type="password" asp-for="Pass" class="form-control "id="IMSpass" value="" readonly="readonly" />
+                    <p>Password auto generated same as Username</p>
+                    <span asp-validation-for="Pass" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="JoinedDate" class="control-label"></label>
+                    <p id="currentTime" asp-for="JoinedDate" class="form-control Login_Time" readonly="readonly"></p>
+                    <span asp-validation-for="JoinedDate" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="" style="float:right">
+                        <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+                    </div>
+                    <input type="submit" value="Create" class="btn btn-success" style="float:right" />
+                </div>
+                <div class="form-group col-md-12">
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#IMSuser").val("IMS" + "@ViewBag.StaffCurrentID")
+            $("#IMSpass").val("IMS" + "@ViewBag.StaffCurrentID")
+        });
+    </script>
+
+    <script>
+
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('currentTime').innerHTML =
+                (("0" + (today.getMonth() + 1)).slice(-2)) + "/" + (("0" + today.getDate()).slice(-2)) + "/" + (today.getFullYear()) + " " + h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+}
+else
+{
+
+    {
+        Html.RenderPartial("_Error404");
+    }
+}
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

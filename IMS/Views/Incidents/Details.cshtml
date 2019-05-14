@@ -1,0 +1,76 @@
+﻿@model IMS.Models.Incident
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details Incident: @Html.DisplayFor(model => model.Iname)</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group col-md-6">
+                <label class="control-label">Incident Name</label>
+                <input asp-for="Iname" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Iname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Date Created</label>
+                <input asp-for="Date" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Count" class="control-label"></label>
+                <input asp-for="Count" class="form-control " readonly="readonly" />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control comment_box" readonly="readonly"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Solution" class="control-label"></label>
+                <textarea asp-for="Solution" class="form-control comment_box" readonly="readonly"></textarea>
+                <span asp-validation-for="Solution" class="text-danger"></span>
+            </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Images" class="control-label"></label>
+                    <img src="data:image/png;base64,@ViewData["image"]" class="form-control display_box" />﻿
+                </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Videos" class="control-label"></label>
+                <video class="form-control display_box" controls>
+                    <source src="data:video/mp4;base64,@ViewData["video"]" />
+                </video>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="" style="float:right">
+                    <a class="btn btn-danger" asp-controller="IncidentTasks" asp-action="Escalate" asp-route-id="@ViewBag.IncidentIDTemp">Escalate</a>
+                    @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Expert")
+                    {
+                        <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+                    }
+                    else
+                    {
+
+                        <a class="btn Back_Button btn_margin_left" asp-controller="Home" asp-action="Index">Back</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

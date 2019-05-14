@@ -1,0 +1,115 @@
+﻿@model IMS.Models.IncidentTask
+
+@{
+    ViewData["Title"] = "SelfEscalate";
+}
+
+<h2>SelfEscalate</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-md-4">
+                Incident Name
+                <input asp-for="Iname" class="form-control" />
+                <span asp-validation-for="Iname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Escalated Date
+                <p id="currentTime" asp-for="EDate" class="form-control Login_Time" readonly="readonly"></p>
+                <span asp-validation-for="EDate" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control comment_box"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                Escalated By
+                <input asp-for="ESname" class="form-control" value="@ViewBag.StaffName" readonly="readonly" />
+                <span asp-validation-for="ESname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4" hidden>
+                <label asp-for="SID" class="control-label"></label>
+                <input asp-for="SID" class="form-control" value="@ViewBag.StaffID" readonly="readonly" />
+                <span asp-validation-for="SID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Floor" class="control-label"></label>
+                <input asp-for="Floor" class="form-control" value="@ViewBag.StaffFloor" readonly="readonly" />
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" value="@ViewBag.StaffDepartment" readonly="readonly" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="TableNo" class="control-label"></label>
+                <input asp-for="TableNo" class="form-control" value="@ViewBag.StaffTable" readonly="readonly" />
+                <span asp-validation-for="TableNo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4" hidden>
+                <label asp-for="IID" class="control-label"></label>
+                <input asp-for="IID" class="form-control" value="0" readonly="readonly" />
+                <span asp-validation-for="IID" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" value="Pending" readonly="readonly" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="SDate" class="control-label"></label>
+                <p id="currentTime" asp-for="SDate" class="form-control Login_Time" readonly="readonly"></p>
+                <span asp-validation-for="SDate" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="EID" class="control-label"></label>
+                <input asp-for="EID" class="form-control" value="0" readonly="readonly" />
+                <span asp-validation-for="EID" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Ename" class="control-label"></label>
+                <input asp-for="Ename" class="form-control" value="Unknown" readonly="readonly" />
+                <span asp-validation-for="Ename" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Eway" class="control-label"></label>
+                <input asp-for="Eway" class="form-control" value="@ViewBag.SEway" readonly="readonly" />
+                <span asp-validation-for="Eway" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="" style="float:right">
+                    <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+                </div>
+                <input type="submit" value="Escalate" class="btn btn-danger" style="float:right" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('currentTime').innerHTML =
+            (("0" + (today.getMonth() + 1)).slice(-2)) + "/" + (("0" + today.getDate()).slice(-2)) + "/" + (today.getFullYear()) +" "+ h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
+

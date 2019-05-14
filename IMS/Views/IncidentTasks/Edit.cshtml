@@ -1,0 +1,138 @@
+﻿@model IMS.Models.IncidentTask
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>IncidentTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" id="edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group  col-md-12">
+                <label class="control-label">ID</label>
+                <input asp-for="ID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Incident ID
+                <input asp-for="IID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="IID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Incident Name
+                <input asp-for="Iname" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Iname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control comment_box" readonly="readonly"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group  col-md-4">
+                Escalated Staff ID
+                <input asp-for="SID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="SID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Escalated By
+                <input asp-for="ESname" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ESname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Escalated Date Time
+                <input asp-for="EDate" class="form-control" readonly="readonly" />
+                <span asp-validation-for="EDate" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Floor" class="control-label"></label>
+                <input asp-for="Floor" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="TableNo" class="control-label"></label>
+                <input asp-for="TableNo" class="form-control" readonly="readonly" />
+                <span asp-validation-for="TableNo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control status">
+                    <option disabled selected value=""> -- select an option -- </option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Solved">Solved</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Solved Date
+                <p id="currentTime" asp-for="SDate" class="form-control Login_Time" readonly="readonly"></p>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4" hidden>
+                Expertise ID
+                <input asp-for="EID" value="@ViewBag.StaffID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="EID" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                Technician Name
+                <input asp-for="Ename" value="@ViewBag.StaffName" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Ename" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4" hidden>
+                <input asp-for="Eway" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Eway" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="" style="float:right">
+                    <a class="btn Back_Button btn_margin_left" asp-action="Index">Back</a>
+                </div>
+                <input type="submit" value="Solved" class="btn btn-success solved btn_margin_left" style="float:right" />
+                <input type="submit" value="Handle" class="btn btn-warning handle" style="float:right; color:white" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".handle").click(function () {
+            $("#edit").find('.status').val("Processing");
+        });
+        $(".solved").click(function () {
+            $("#edit").find('.status').val("Solved");
+        });
+    });
+</script>
+<script>
+
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('currentTime').innerHTML =
+            (("0" + (today.getMonth() + 1)).slice(-2)) + "/" + (("0" + today.getDate()).slice(-2)) + "/" + (today.getFullYear()) +" "+ h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

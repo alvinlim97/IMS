@@ -1,0 +1,87 @@
+﻿@model IEnumerable<IMS.Models.IncidentTask>
+@{
+    ViewData["Title"] = "ReportYearly";
+    int tempID = 120000;
+    int x = 0;
+    int y = 0;
+    int z = 0; int s = 0;
+}
+
+<h2>@ViewBag.Year Report</h2>
+
+<div class="col-md-12 animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <table id="bootstrap-data-table-export" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Incident ID
+                        </th>
+                        <th>
+                            Incident Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            Count
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Satisfication)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        x = 0;
+                        y= 0; z = 0;
+                        if (item.IID != tempID)
+                        {
+                            tempID = item.IID;
+                            @foreach (var item1 in Model)
+                            {
+                                if (tempID == item1.IID)
+                                {
+                                    x++;
+                                }
+                            }
+
+                            @foreach (var item2 in Model)
+                            {
+                                if (tempID == item2.IID && item2.Satisfication == "Satisfied")
+                                {
+                                   y++;
+                                }
+                            }
+                            z = y*100/x;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Iname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Category)
+                                </td>
+                                <td>
+                                    @x.ToString()
+                                </td>
+                                <td>
+                                    @z.ToString()%
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="IncidentTasks" asp-action="CheckFeedback" asp-route-id="@item.IID"><i class="fa fa-eye"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

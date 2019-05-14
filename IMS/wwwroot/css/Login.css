@@ -1,0 +1,106 @@
+﻿
+.G_Module
+{
+    padding: 20px 20px;
+}
+
+.G_no_padding {
+    padding: 0;
+}
+
+.Login_Block {
+    min-height: 500px;
+    width: 400px;
+    margin: auto;
+    margin-top: 10%;
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.Login_Title {
+    color: #000000;
+    font-size: 65px;
+    text-align: center;
+    font-family: -webkit-body;
+}
+
+.Login_Credential {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.Login_Box {
+    color: #ffffff;
+    background-color: #000000
+}
+
+.Login_Form {
+    padding-top: 15%;
+}
+
+.Login_Btn {
+    color: #000000;
+    background-color: #ffffff;
+    transition: 0.8s;
+    border-color: black;
+}
+
+    .Login_Btn:hover {
+        color: #ffffff;
+        background-color: #000000;
+        transition: 0.8s;
+    }
+
+.Login_Tag {
+    display: inline-grid;
+    padding-top: 20px;
+}
+
+    .Login_Tag a:hover {
+        color: #ffffff;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+.Login_Time {
+    color: black;
+    position: absolute;
+    bottom: -140px;
+    right: 20px;
+    cursor: default;
+}
+
+.CopyRight {
+    color: #ffffff;
+    position: absolute;
+    bottom: -140px;
+    cursor: default;
+}
+
+.Login_Visibility {
+    position: absolute;
+    top: 198px;
+    right: 14px;
+    color: gray;
+}
+
+.fa-eye-slash {
+    transition: 0.5s;
+}
+
+.Login_Visibility:hover > .fa-eye-slash {
+    color: black !important;
+    transition: 0.5s;
+    cursor:pointer;
+}
+

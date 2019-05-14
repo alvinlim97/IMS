@@ -1,0 +1,74 @@
+﻿@model IEnumerable<IMS.Models.IncidentTask>
+
+@{
+    ViewData["Title"] = "Annual Report";
+}
+
+<h2>Annual Report</h2>
+<form>
+    <input class="IMS_searchBar" style="width:100%" type="text" name="searchString" id="search" placeholder="Search by Year" />
+    <div class="IMS_DropDown col-md-3" style="text-align:right; float:right">
+    </div>
+
+</form>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <h4 class="mb-3">@ViewBag.Year Report</h4>
+            Total Incident(s):<span class="count">@ViewBag.totalIncident</span>&nbsp; Solved:<span class="count">@ViewBag.incidentSolved</span>
+            <canvas id="densityChart" class="chartjs-render-monitor" width="600" height="400"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12" style="text-align:center">
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="1">Jan</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="2">Feb</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="3">Mar</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="4">Apr</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="5">May</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="6">Jun</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="7">Jul</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="8">Aug</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="9">Sep</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="10">Oct</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="11">Nov</a>
+        <a class="col-md-1 btn btn-monthly" asp-controller="IncidentTasks" asp-action="ReportMonthly" asp-route-id="12">Dec</a>
+        <a class="col-md-1 btn btn-success" asp-controller="IncidentTasks" asp-action="ReportYearly" asp-route-id="@ViewBag.Year">Year</a>
+    </div>
+</div>
+
+<script src="~/vendors/chart.js/dist/Chart.bundle.min.js"></script>
+<script>
+    ( function ( $ ) {
+    var densityCanvas = document.getElementById("densityChart");
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var escalated = {
+  label: 'Escalated Incidents',
+    data: [@ViewBag.rJan, @ViewBag.rFeb, @ViewBag.rMar, @ViewBag.rApr, @ViewBag.rMay, @ViewBag.rJun, @ViewBag.rJul, @ViewBag.rAug, @ViewBag.rSep, @ViewBag.rOct, @ViewBag.rNov, @ViewBag.rDec],
+    borderColor: "black",
+    borderWidth: "0",
+    backgroundColor: "#272c33"
+};
+        var solved= {
+  label: 'Solved Incidents',
+    data: [@ViewBag.rsJan, @ViewBag.rsFeb, @ViewBag.rsMar, @ViewBag.rsApr, @ViewBag.rsMay, @ViewBag.rsJun, @ViewBag.rsJul, @ViewBag.rsAug, @ViewBag.rsSep, @ViewBag.rsOct, @ViewBag.rsNov, @ViewBag.rsDec],
+    borderColor: "black",
+    borderWidth: "0",
+    backgroundColor: "cadetblue"
+};
+var barChart = new Chart(densityCanvas, {
+  type: 'bar',
+  data: {
+      labels: ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [escalated,  solved]
+  }
+});
+
+
+
+
+} )( jQuery );
+</script>

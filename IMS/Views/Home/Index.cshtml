@@ -1,0 +1,257 @@
+﻿@model IEnumerable<IMS.Models.Incident>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*<div class="IMS_Main col-md-12">
+        <form>
+            @if (@ViewBag.StaffRole == "Admin")
+            {
+                <div class="IMS_Block_Update col-md-4">
+                    <i class="fas fa-id-card">&nbsp;&nbsp;Staff</i>
+                    <button asp-controller="Staffs" asp-action="Create" class="btn btn-success IMS_Staff_Bar col-md-12">Add</button>
+                    <button asp-controller="Staffs" asp-action="Index" class="btn btn-primary IMS_Staff_Bar col-md-12">Index</button>
+                </div>
+            }
+            @if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Expert")
+            {
+                <div class="IMS_Block_Update col-md-4">
+                    <i class="fas fa-exclamation-circle">&nbsp;&nbsp;Incident</i>
+                    <button asp-controller="Incidents" asp-action="Create" class="btn btn-success IMS_Staff_Bar col-md-12">Add</button>
+                    <button asp-controller="Incidents" asp-action="Index" class="btn btn-primary IMS_Staff_Bar col-md-12">Index</button>
+                </div>
+            }
+
+            <div class="IMS_Block_Update col-md-4">
+                <i class="fas fa-user">&nbsp;&nbsp;@ViewBag.StaffName</i>
+                <button asp-controller="Staffs" asp-action="Edit" asp-route-id="@ViewBag.StaffID" class="btn btn-warning IMS_Staff_Bar col-md-12">Edit</button>
+                <button asp-controller="Staffs" asp-action="Details" asp-route-id="@ViewBag.StaffID" class="btn btn-primary IMS_Staff_Bar col-md-12">Details</button>
+            </div>
+        </form>
+
+    </div>*@
+<div class="col-md-6  animated fadeIn" >
+    <aside class="profile-nav alt">
+        <section class="card">
+            <div class="card-header user-header alt bg-dark">
+                <div class="media">
+                    <a href="#">
+                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h2 class="text-light display-6">@ViewBag.StaffName</h2>
+                        <p>@ViewBag.StaffRole</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a asp-area="" asp-controller="IncidentTasks" asp-action="Index"> <i class="fa fa-tasks"></i> Recent Activity <span class="badge badge-danger pull-right">@ViewBag.RecentActivity</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-area="" asp-controller="IncidentTasks" asp-action="OnHand"> <i class="fa fa-bell-o"></i> Notification <span class="badge badge-success pull-right">@ViewBag.TaskOnHand</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-route-id="@ViewBag.StaffID" asp-controller="Staffs" asp-action="Edit"> <i class="fa fa-user"></i> Profile </a>
+                </li>
+                <div class="weather-category twt-category">
+                    <ul style="text-align:center">
+                        <li class="active">
+                            <h5>@ViewBag.JD</h5>
+                            Joined IMS
+                        </li>
+                        <li>
+                            <h5>@ViewBag.SP</h5>
+                            Points
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+
+        </section>
+    </aside>
+</div>
+
+@if (@ViewBag.StaffRole == "Admin" || @ViewBag.StaffRole == "Expert")
+{
+<div class="col-md-6">
+
+    <div class="col-md-12 grow">
+        <div class="card bg-flat-color-1">
+            <a asp-area="" asp-controller="IncidentTasks" asp-action="Reports" class="card-body" style="color:white">
+                <div class="h4 mb-0 text-light">
+                    <span class="">@ViewBag.Today</span> <i class="ti-time text-light" style="float:right"></i>
+                </div>
+                <small class="text-uppercase font-weight-bold text-light" id="currentTime"></small>
+                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-12 grow">
+        <div class="card bg-flat-color-1">
+            <a asp-area="" asp-controller="Staffs" asp-action="Index" class="card-body" style="color:white">
+                <div class="h4 mb-0 text-light">
+                    <span class="count">53</span> / <span class="count">80</span> <i class="fa fa-user text-light" style="float:right"></i>
+                </div>
+                <small class="text-uppercase font-weight-bold text-light">Users</small>
+                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-12 grow">
+        <div class="card bg-flat-color-1">
+            <a asp-area="" asp-controller="Incidents" asp-action="Index" class="card-body" style="color:white">
+                <div class="h4 mb-0 text-light">
+                    <span class="count">73</span> <i class="fa fa-exclamation-circle text-light" style="float:right"></i>
+                </div>
+                <small class="text-uppercase font-weight-bold text-light">Incidents</small>
+                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+
+    <div class="col-md-4 grow">
+        <div class="card bg-flat-color-4 text-light">
+            <a asp-area="" asp-controller="IncidentTasks" asp-action="Index" class="card-body" style="color:white">
+                <div class="h4 mb-0 text-light">
+                    <span class="count">@ViewBag.TaskPending</span><i class="ti-stats-up text-light" style="float:right"></i>
+                </div>
+                <div>Pending Escalation</div>
+                <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <small class="text-light"></small>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4 grow">
+        <div class="card bg-flat-color-4 text-light">
+            <a asp-area="" asp-controller="IncidentTasks" asp-action="OnHand" class="card-body" style="color:white">
+                <div class="h4 mb-0 text-light">
+                    <span class="count">@ViewBag.TaskOnHand</span><i class="ti-hand-drag text-light" style="float:right"></i>
+                </div>
+                <div>On Hand Task</div>
+                <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <small class="text-light"></small>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4 grow">
+        <div class="card bg-flat-color-4 text-light">
+            <a asp-area="" asp-controller="IncidentTasks" asp-action="TaskCompleted" class="card-body" style="color:white">
+                    <div class="h4 mb-0 text-light">
+                        <span class="count">@ViewBag.TaskCompleted</span><i class="   ti-check text-light" style="float:right"></i>
+                    </div>
+                    <div>Task(s) Completed Today</div>
+                    <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    <small class="text-light"></small>
+                </a>
+        </div>
+    </div>
+</div>
+}
+
+            <form class="col-md-12">
+                <div class="IMS_DropDown col-md-6">Incident Category: @Html.DropDownList("CType", "Select a Value")</div>
+                <div class="IMS_DropDown col-md-6" style="text-align:right; float:right">
+                    <input class="btn btn-primary" type="submit" value="Search">
+                    <button class="btn btn-warning" style="color:white" asp-controller="IncidentTasks" asp-action="SelfEscalate">Escalate Manually</button>
+                </div>
+            </form>
+<div class="col-md-12 animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <table id="bootstrap-data-table-export" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="grow" style="cursor:pointer">
+                            Incident Name
+                        </th>
+                        <th class="grow" style="cursor:pointer">
+                            @Html.DisplayNameFor(model => model.Category)
+                            @*<a asp-action="Index" asp-route-sortOrder="@ViewData["CategorySort"]">@Html.DisplayNameFor(model => model.Category)</a>*@
+                        </th>
+                        <th class="grow" style="cursor:pointer">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th class="grow" style="cursor:pointer">
+                            @Html.DisplayNameFor(model => model.Count)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Iname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Count)
+                            </td>
+                            <td style="float:right">
+                                <a class="btn btn-info" asp-controller="Incidents" asp-action="Details" asp-route-id="@item.ID"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-danger" asp-controller="IncidentTasks" asp-action="Escalate" asp-route-id="@item.ID"><i class="fa  fa-share-square"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/vendors/flot/excanvas.min.js"></script>
+<script src="~/vendors/flot/jquery.flot.js"></script>
+<script src="~/vendors/flot/jquery.flot.pie.js"></script>
+<script src="~/vendors/flot/jquery.flot.time.js"></script>
+<script src="~/vendors/flot/jquery.flot.stack.js"></script>
+<script src="~/vendors/flot/jquery.flot.resize.js"></script>
+<script src="~/vendors/flot/jquery.flot.crosshair.js"></script>
+<script src="~/assets/js/init-scripts/flot-chart/curvedLines.js"></script>
+<script src="~/assets/js/init-scripts/flot-chart/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+<script src="~/assets/js/init-scripts/flot-chart/flot-chart-init.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#search").click(function () {
+            if ($(this).attr('placeholder').val() == 'Search by Incident Name / Category') {
+                $(this).val("")
+            }
+        });
+    });
+</script>
+<script>
+
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('currentTime').innerHTML =
+            (("0" + (today.getMonth() + 1)).slice(-2)) + "/" + (("0" + today.getDate()).slice(-2)) + "/" + (today.getFullYear()) + " " + h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
